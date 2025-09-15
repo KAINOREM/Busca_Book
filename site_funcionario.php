@@ -82,6 +82,9 @@
                   <a href="verifica_reservas.php" class="botao-principal">Verificar Reservas</a>
                   </div>';
             }
+            echo '<div class="links-principais">
+                  <a href="index.php" class="botao-principal">Voltar</a>
+                  </div>';
         ?>
     </body>
 </html>

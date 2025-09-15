@@ -81,14 +81,12 @@
                         </button>';
                     }
                 }
-                echo '<form method="POST" action="apagarBanco.php" style="display:inline;">';
-                echo '<input type="hidden" name="IdLivro_Apagar" value="' . $livro['IdLivro'] . '">';
-                echo '<button type="submit" class="excluir" onclick="return confirm(\"Tem certeza que deseja excluir este cliente?\")">
-        			<img src="Imagens/lixeira.png" alt="Excluir" style="width: 38px; height: 38px;">
-     				</button> </form>';
                 echo '</div>';
                 echo '</div>';
             }
+            echo '<div class="links-principais">
+                  <a href="index.php" class="botao-principal">Voltar</a>
+                  </div>';
             
             $conexao -> close();
         ?>
