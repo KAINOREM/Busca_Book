@@ -1,0 +1,371 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f1419 0%, #1a2332 100%);
+    min-height: 100vh;
+    color: white;
+    line-height: 1.6;
+}
+
+/* Cabeçalho */
+.cabecalho {
+    background: linear-gradient(90deg, #2d3748 0%, #4a5568 100%);
+    padding: 20px 0;
+    border-bottom: 3px solid #805ad5;
+    margin-bottom: 40px;
+}
+
+/* Texto branco */
+.corBranca {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Tabela principal */
+table {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(45, 55, 72, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 30px;
+}
+
+table td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Lista de clientes */
+.cliente-item {
+    background: rgba(74, 85, 104, 0.4);
+    margin: 15px auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    border-left: 4px solid #805ad5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cliente-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(128, 90, 213, 0.2);
+}
+
+.cliente-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cliente-id {
+    background: #805ad5;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.cliente-nome {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Botões */
+button, .botao-link {
+    background: linear-gradient(135deg, #805ad5 0%, #9f7aea 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(128, 90, 213, 0.3);
+    margin: 10px;
+}
+
+button:hover, .botao-link:hover {
+    background: linear-gradient(135deg, #9f7aea 0%, #b794f6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(128, 90, 213, 0.4);
+}
+
+button.excluir img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1); /* Deixa a imagem branca */
+    transition: all 0.3s ease;
+}
+
+button.excluir:hover img {
+    transform: scale(1.1);
+}
+
+button.excluir {
+    background: linear-gradient(135deg, #e53e3e 0%, #fc8181 100%);
+    box-shadow: 0 4px 6px rgba(229, 62, 62, 0.3);
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+button.excluir:hover {
+    background: linear-gradient(135deg, #fc8181 0%, #feb2b2 100%);
+    box-shadow: 0 6px 12px rgba(229, 62, 62, 0.4);
+}
+button.cartao {
+    background: linear-gradient(135deg, #3ee554 0%, #95fc81 100%);
+    box-shadow: 0 4px 6px rgba(62, 229, 76, 0.3);
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+button.cartao:hover {
+    background: linear-gradient(135deg, #81fc91 0%, #bbfeb2 100%);
+    box-shadow: 0 6px 12px rgba(62, 229, 98, 0.4);
+}
+
+
+/* Links principais */
+.links-principais {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.botao-principal {
+    background: linear-gradient(135deg, #4299e1 0%, #63b3ed 100%);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 15px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(66, 153, 225, 0.3);
+}
+
+.botao-principal:hover {
+    background: linear-gradient(135deg, #63b3ed 0%, #90cdf4 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(66, 153, 225, 0.4);
+}
+
+/* Linha divisória */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #805ad5, transparent);
+    margin: 30px 0;
+    border-radius: 1px;
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Centralizador */
+center {
+    display: block;
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .corBranca {
+        font-size: 20px;
+    }
+    
+    .cliente-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .cliente-info {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .botao-principal {
+        display: block;
+        margin: 10px auto;
+        width: fit-content;
+    }
+    
+    table td {
+        padding: 15px;
+    }
+}
+
+/* Formulários de Login e Cadastro */
+.divLogin, .divCadastro {
+    background: rgba(45, 55, 72, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 400px;
+    margin: 100px auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.6s ease-out;
+}
+
+.divLogin h2, .divCadastro h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #e2e8f0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="usuario"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="usuario"]:focus {
+    outline: none;
+    border-color: #805ad5;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(128, 90, 213, 0.2);
+    transform: translateY(-2px);
+}
+
+.form-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.a-submit {
+    width: 100%;
+    background: linear-gradient(135deg, #805ad5 0%, #9f7aea 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(128, 90, 213, 0.3);
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.a-submit:hover{
+    color: red;
+}
+
+.a-submit:hover {
+    background: linear-gradient(135deg, #9f7aea 0%, #b794f6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(128, 90, 213, 0.4);
+}
+
+.a-submit:active {
+    transform: translateY(0);
+}
+.a-submit:link {
+    color: white;
+}
+
+
+/* Título da página */
+.page-title {
+    text-align: center;
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Link de voltar */
+.link-voltar {
+    display: inline-block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: rgba(74, 85, 104, 0.6);
+    color: #e2e8f0;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.link-voltar:hover {
+    background: rgba(74, 85, 104, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Container centralizado */
+.container-center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Animações sutis */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cliente-item, .divLogin, .divCadastro {
+    animation: fadeIn 0.5s ease-out;
+}
