@@ -28,6 +28,13 @@
             $password = "";
             $database = "biblioteca";
             
+            echo '<form method="post" action="buscarBanco.php" id="formCadastro" name="formCadastro">
+                    <div class="form-group">
+                        <input type="text" name="cliente" id="cliente" placeholder="Buscar" required>
+                    </div>
+		          </form>
+            ';
+
             $conexao = new mysqli($hostname,$user,$password,$database);
 
             $sql="SELECT * FROM `biblioteca`.`livros`;";
