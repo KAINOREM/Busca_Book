@@ -15,12 +15,9 @@
                 header('Location: sair.php');
                 exit();
             } else {
-                echo '<div class="cabecalho">
-                    <div class="container">
-                        <center>
-                        <span class="corBranca">Bem Vindo, '.$_SESSION['nome'].'</span>
-                        </center>
-                    </div>
+                echo '<div class="header">
+                    <div class="logo">Busca Book</div>
+                    <div class="user-name">Bem Vindo, '.$_SESSION['nome'].'</div>
                 </div>';
             }
             $hostname = "127.0.0.1";
@@ -28,13 +25,11 @@
             $password = "";
             $database = "biblioteca";
             
-            echo '<form method="post" action="buscarBanco_funcionario.php" id="formCadastro" name="formCadastro">
-                    <div class="form-group">
-                        <input type="text" name="busca" id="busca" placeholder="Buscar" required>
-                    </div>
-		          </form>
-            ';
-
+            echo '<div class="container">
+                    <form method="post" action="buscarBanco_funcionario.php" class="search-form">
+                        <input type="text" name="busca" id="busca" placeholder="Buscar livro..." required class="search-input">
+                    </form>
+                </div>';
 
             $conexao = new mysqli($hostname,$user,$password,$database);
 
@@ -50,40 +45,44 @@
             $verificaCargo = $conexao->query($cargo);
 
             $verificaCargo = $verificaCargo->fetch_assoc();
-                
+
+            echo '<div class="container"><div class="book-list">';
             while($livro = $resultado->fetch_assoc()) {
-                echo '<div class="cliente-item">';
-                echo '<div class="cliente-info">';
-                echo '<img src="'.$livro['Capa'].'"style="width: auto; height: 100px;">';
-                echo '<span class="cliente-id">' . $livro['IdLivro'] . '</span>';
-                echo '<span class="cliente-nome">' . $livro['Titulo'] . '</span>';
+                echo '<div class="book-item">';
+                echo '<div class="book-info">';
+                echo '<img src="'.$livro['Capa'].'" class="book-cover">';
+                echo '<div class="book-details">';
+                echo '<div class="book-id">ID: ' . $livro['IdLivro'] . '</div>';
+                echo '<div class="book-title">' . $livro['Titulo'] . '</div>';
                 echo '</div>';
-                echo '<div>';
+                echo '</div>';
+                echo '<div class="book-actions">';
                 if ($livro['Status'] == 0) {
                 echo '<input type="hidden" name="Status" value="' . $livro['IdLivro'] . '">';
-                echo '<button type="submit" class="cartao">
-        			<img src="Imagens/livre.png" alt="cartao" style="width: 38px; height: 38px;">
+                echo '<button type="submit" class="action-btn status-available">
+        			<img src="Imagens/livre.png" alt="Disponível">
      				</button>';
                 } else {
                     echo '<input type="hidden" name="Status" value="' . $livro['IdLivro'] . '">';
-                    echo '<button type="submit" class="cartao">
-        			<img src="Imagens/reservado.png" alt="cartao" style="width: 38px; height: 38px;">
+                    echo '<button type="submit" class="action-btn status-reserved">
+        			<img src="Imagens/reservado.png" alt="Reservado">
      				</button>';
                 }
                 echo '<form method="POST" action="apagarBanco.php" style="display:inline;">';
                 echo '<input type="hidden" name="IdLivro_Apagar" value="' . $livro['IdLivro'] . '">';
-                echo '<button type="submit" class="excluir" onclick="return confirm(\"Tem certeza que deseja excluir este cliente?\")">
-        			<img src="Imagens/lixeira.png" alt="Excluir" style="width: 38px; height: 38px;">
+                echo '<button type="submit" class="action-btn delete-btn" onclick="return confirm(\'Tem certeza que deseja excluir este livro?\')">
+        			<img src="Imagens/lixeira.png" alt="Excluir">
      				</button> </form>';
                 echo '</div>';
                 echo '</div>';
             }
+            echo '</div>';
             
             $conexao -> close();
 
-            echo '<div class="links-principais">
-                  <a href="site_funcionario.php" class="botao-principal">Voltar</a>
-                  </div>';
+            echo '<div class="nav-links">
+                  <a href="site_funcionario.php" class="btn">Voltar</a>
+                  </div></div>';
         ?>
     </body>
 </html>

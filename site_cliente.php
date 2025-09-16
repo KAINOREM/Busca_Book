@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Busca Book</title>
+        <title>Busca Book - Cliente</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="estilo.css">
@@ -15,58 +15,64 @@
                 header('Location: sair.php');
                 exit();
             } else {
-                echo '<div class="cabecalho">
-                    <div class="container">
-                        <center>
-                        <span class="corBranca">Bem Vindo, '.$_SESSION['nome'].'</span>
-                        </center>
-                    </div>
+                echo '<div class="header">
+                    <div class="logo">Busca Book</div>
+                    <div class="user-name">Bem Vindo, '.$_SESSION['nome'].'</div>
                 </div>';
             }
-        $hostname = "127.0.0.1";
-            $user = "root";
-            $password = "";
-            $database = "biblioteca";
             
-            $conexao = new mysqli($hostname,$user,$password,$database);
+        $hostname = "127.0.0.1";
+        $user = "root";
+        $password = "";
+        $database = "biblioteca";
+        
+        $conexao = new mysqli($hostname,$user,$password,$database);
 
-            echo '<form method="post" action="buscarBanco_cliente.php" id="formCadastro" name="formCadastro">
-                    <div class="form-group">
-                        <input type="text" name="busca" id="busca" placeholder="Buscar" required>
-                    </div>
-		          </form>
-            ';
+        echo '<div class="container">
+                <form method="post" action="buscarBanco_cliente.php" class="search-form">
+                    <input type="text" name="busca" id="busca" placeholder="Buscar livro..." required class="search-input">
+                </form>
+              </div>';
 
-            $sql="SELECT * FROM `biblioteca`.`livros`;";
+        $sql="SELECT * FROM `biblioteca`.`livros`;";
+        $resultado = $conexao->query($sql);
 
-            $resultado = $conexao->query($sql);
+        $Status = "SELECT 
+                CASE WHEN EXISTS (
+                    SELECT * FROM `reserva` `Rsv` 
+                    WHERE `Rsv`.`IdCliente` = ".$_SESSION['Id']." 
+                    AND `Rsv`.`Status` = 1
+                ) THEN (
+                    SELECT `IdLivro` FROM `reserva` 
+                    WHERE `IdCliente` = ".$_SESSION['Id']." 
+                    AND `Status` = 1 
+                )
+                ELSE 0 
+               END AS 'Reservado'";
 
-            $Status = "SELECT 
-                    CASE WHEN EXISTS (
-                        SELECT * FROM `reserva` `Rsv` 
-                        WHERE `Rsv`.`IdCliente` = ".$_SESSION['Id']." 
-                        AND `Rsv`.`Status` = 1
-                    ) THEN (
-                        SELECT `IdLivro` FROM `reserva` 
-                        WHERE `IdCliente` = ".$_SESSION['Id']." 
-                        AND `Status` = 1 
-                    )
-                    ELSE 0 
-                   END AS 'Reservado'";
+        $verificaReserva = $conexao->query($Status);
+        $verificaReserva = $verificaReserva->fetch_assoc();
 
-            $verificaReserva = $conexao->query($Status);
-
-            $verificaReserva = $verificaReserva->fetch_assoc();
-                
-            while($livro = $resultado->fetch_assoc()) {
-                echo '<div class="cliente-item">';
-                echo '<div class="cliente-info">';
-                echo '<img src="'.$livro['Capa'].'"style="width: auto; height: 100px;">';
-                echo '<span class="cliente-id">' . $livro['IdLivro'] . '</span>';
-                echo '<span class="cliente-nome">' . $livro['Titulo'] . '</span>';
-                echo '</div>';
-                echo '<div>';
-                if($verificaReserva['Reservado'] == 0) {
+        echo '<div class="container">';
+        
+        // Seção de livros recomendados/em destaque
+        echo '<div class="recommended-section">
+                <h2 class="section-title">Livros Disponíveis</h2>
+                <div class="book-list">';
+            
+        while($livro = $resultado->fetch_assoc()) {
+            echo '<div class="book-item">';
+            echo '<div class="book-info">';
+            echo '<img src="'.$livro['Capa'].'" class="book-cover">';
+            echo '<div class="book-details">';
+            echo '<div class="book-id">ID: ' . $livro['IdLivro'] . '</div>';
+            echo '<div class="book-title">' . $livro['Titulo'] . '</div>';
+            echo '<div class="book-author">' . (isset($livro['Autor']) ? $livro['Autor'] : 'Autor não informado') . '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '<div class="book-actions">';
+            
+            if($verificaReserva['Reservado'] == 0) {
                     if ($livro['Status'] == 0) {
                     echo '<form method="POST" action="reservarBanco.php" style="display:inline;">';
                     echo '<input type="hidden" name="IdLivro" value="' . $livro['IdLivro'] . '">';
@@ -88,14 +94,19 @@
                         </button>';
                     }
                 }
-                echo '</div>';
-                echo '</div>';
-            }
-            echo '<div class="links-principais">
-                  <a href="index.php" class="botao-principal">Voltar</a>
-                  </div>';
-            
-            $conexao -> close();
+            echo '</div>';
+            echo '</div>';
+        }
+        
+        echo '</div></div>'; // Fecha book-list e recommended-section
+        
+        echo '<div class="nav-links">
+                <a href="sair.php" class="btn">Sair</a>
+              </div>';
+        
+        echo '</div>'; // Fecha container
+        
+        $conexao->close();
         ?>
     </body>
 </html>

@@ -8,11 +8,14 @@
     
     <body>
         <div class="container">
-            <h1 class="page-title">Busca Book</h1>
-            
-            <div class="divLogin">
-                    <button class="a-submit"><a href="login.php">Login</a></button>
-                    <button class="a-submit"><a href="cadastrar_cliente.php">Cadastrar</a></button>
+            <div class="welcome-container">
+                <h1 class="page-title">Busca Book</h1>
+                <p class="welcome-subtitle">Bem-vindo ao sistema de biblioteca</p>
+                
+                <div class="nav-links">
+                    <a href="login.php" class="btn">Login</a>
+                    <a href="cadastrar_cliente.php" class="btn">Cadastrar</a>
+                </div>
             </div>
         </div>
     </body>

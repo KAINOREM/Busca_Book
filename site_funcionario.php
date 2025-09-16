@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Busca Book</title>
+        <title>Busca Book - Funcionário</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="estilo.css">
@@ -15,84 +15,88 @@
                 header('Location: sair.php');
                 exit();
             } else {
-                echo '<div class="cabecalho">
-                    <div class="container">
-                        <center>
-                        <span class="corBranca">Bem Vindo, '.$_SESSION['nome'].'</span>
-                        </center>
-                    </div>
+                echo '<div class="header">
+                    <div class="logo">Busca Book</div>
+                    <div class="user-name">Bem Vindo, '.$_SESSION['nome'].'</div>
                 </div>';
             }
+            
         $hostname = "127.0.0.1";
-            $user = "root";
-            $password = "";
-            $database = "biblioteca";
+        $user = "root";
+        $password = "";
+        $database = "biblioteca";
+        
+        $conexao = new mysqli($hostname,$user,$password,$database);
+
+        echo '<div class="container">
+                <form method="post" action="buscarBanco_funcionario.php" class="search-form">
+                    <input type="text" name="busca" id="busca" placeholder="Buscar livro..." required class="search-input">
+                </form>
+              </div>';
+        
+        $sql = "SELECT * FROM `biblioteca`.`livros`";
+        $resultado = $conexao->query($sql);
+
+        $cargo="SELECT `Cargo` FROM `biblioteca`.`funcionario` Where `IdFuncionario` = ".$_SESSION['Id'].";";
+        $verificaCargo = $conexao->query($cargo);
+        $verificaCargo = $verificaCargo->fetch_assoc();
+
+        echo '<div class="container">';
+        echo '<div class="recommended-section">
+                <h2 class="section-title">Gerenciar Livros</h2>
+                <div class="book-list">';
             
-
-            $conexao = new mysqli($hostname,$user,$password,$database);
-
-            echo '<form method="post" action="buscarBanco_funcionario.php" id="formCadastro" name="formCadastro">
-                    <div class="form-group">
-                        <input type="text" name="busca" id="busca" placeholder="Buscar" required>
-                    </div>
-		          </form>
-            ';
+        while($livro = $resultado->fetch_assoc()) {
+            echo '<div class="book-item">';
+            echo '<div class="book-info">';
+            echo '<img src="'.$livro['Capa'].'" class="book-cover">';
+            echo '<div class="book-details">';
+            echo '<div class="book-id">ID: ' . $livro['IdLivro'] . '</div>';
+            echo '<div class="book-title">' . $livro['Titulo'] . '</div>';
+            echo '<div class="book-author">' . (isset($livro['Autor']) ? $livro['Autor'] : 'Autor não informado') . '</div>';
+            echo '</div>';
+            echo '</div>';
+            echo '<div class="book-actions">';
             
-            $sql = "SELECT * FROM `biblioteca`.`livros`";
-            
-            $resultado = $conexao->query($sql);
-
-            $cargo="SELECT `Cargo` FROM `biblioteca`.`funcionario` Where `IdFuncionario` = ".$_SESSION['Id'].";";
-
-            $verificaCargo = $conexao->query($cargo);
-
-            $verificaCargo = $verificaCargo->fetch_assoc();
-                
-            while($livro = $resultado->fetch_assoc()) {
-                echo '<div class="cliente-item">';
-                echo '<div class="cliente-info">';
-                echo '<img src="'.$livro['Capa'].'"style="width: auto; height: 100px;">';
-                echo '<span class="cliente-id">' . $livro['IdLivro'] . '</span>';
-                echo '<span class="cliente-nome">' . $livro['Titulo'] . '</span>';
-                echo '</div>';
-                echo '<div>';
-                if ($livro['Status'] == 0) {
-                echo '<input type="hidden" name="Status" value="' . $livro['IdLivro'] . '">';
-                echo '<button type="submit" class="cartao">
-        			<img src="Imagens/livre.png" alt="cartao" style="width: 38px; height: 38px;">
-     				</button>';
-                } else {
-                    echo '<input type="hidden" name="Status" value="' . $livro['IdLivro'] . '">';
-                    echo '<button type="submit" class="cartao">
-        			<img src="Imagens/reservado.png" alt="cartao" style="width: 38px; height: 38px;">
-     				</button>';
-                }
-                echo '<form method="POST" action="apagarBanco.php" style="display:inline;">';
-                echo '<input type="hidden" name="IdLivro_Apagar" value="' . $livro['IdLivro'] . '">';
-                echo '<button type="submit" class="excluir" onclick="return confirm(\"Tem certeza que deseja excluir este cliente?\")">
-        			<img src="Imagens/lixeira.png" alt="Excluir" style="width: 38px; height: 38px;">
-     				</button> </form>';
-                echo '</div>';
-                echo '</div>';
+            if ($livro['Status'] == 0) {
+                echo '<button type="button" class="action-btn status-available" title="Livro disponível">
+                        <img src="Imagens/livre.png" alt="Disponível">
+                      </button>';
+            } else {
+                echo '<button type="button" class="action-btn status-reserved" title="Livro reservado">
+                        <img src="Imagens/reservado.png" alt="Reservado">
+                      </button>';
             }
             
-            $conexao -> close();
+            echo '<form method="POST" action="apagarBanco.php" style="display:inline;">';
+            echo '<input type="hidden" name="IdLivro_Apagar" value="' . $livro['IdLivro'] . '">';
+            echo '<button type="submit" class="action-btn delete-btn" onclick="return confirm(\'Tem certeza que deseja excluir este livro?\')" title="Excluir livro">
+                    <img src="Imagens/lixeira.png" alt="Excluir">
+                  </button></form>';
+            echo '</div>';
+            echo '</div>';
+        }
+        
+        echo '</div></div>'; // Fecha book-list e recommended-section
+        
+        $conexao->close();
 
-            if(strtoupper($verificaCargo['Cargo']) == 'GERENTE') {
-            echo '<div class="links-principais">
-                  <a href="cadastrar_funcionario.php" class="botao-principal">Cadastrar Funcionário</a>
-                  <a href="cadastrar_livro.php" class="botao-principal">Cadastrar Livro</a>
-                  <a href="verifica_reservas.php" class="botao-principal">Verificar Reservas</a>
-                  </div>';     
-            } Else {
-            echo '<div class="links-principais">
-                  <a href="cadastrar_livro.php" class="botao-principal">Cadastrar Livro</a>
-                  <a href="verifica_reservas.php" class="botao-principal">Verificar Reservas</a>
-                  </div>';
-            }
-            echo '<div class="links-principais">
-                  <a href="index.php" class="botao-principal">Voltar</a>
-                  </div>';
+        // Menu de navegação baseado no cargo
+        echo '<div class="nav-links">';
+        
+        if(strtoupper($verificaCargo['Cargo']) == 'GERENTE') {
+            echo '<a href="cadastrar_funcionario.php" class="btn">Cadastrar Funcionário</a>';
+            echo '<a href="cadastrar_livro.php" class="btn">Cadastrar Livro</a>';
+            echo '<a href="verifica_reservas.php" class="btn">Verificar Reservas</a>';
+        } else {
+            echo '<a href="cadastrar_livro.php" class="btn">Cadastrar Livro</a>';
+            echo '<a href="verifica_reservas.php" class="btn">Verificar Reservas</a>';
+        }
+        
+        echo '<a href="sair.php" class="btn btn-link">Sair</a>';
+        echo '</div>';
+        
+        echo '</div>'; // Fecha container
         ?>
     </body>
 </html>

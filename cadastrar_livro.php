@@ -10,49 +10,49 @@
         <div class="container">
             <h1 class="page-title">Cadastrar Livro</h1>
             
-            <div class="divCadastro">
-                <h2>Informações</h2>
+            <div class="form-container">
+                <h2 class="login-title">Informações do Livro</h2>
                 
-                <form method="post" action="cadastrarBanco_Livro.php" id="formCadastro" name="formCadastro">
+                <form method="post" action="cadastrarBanco_Livro.php">
                 <div class="form-group">
-                    <label for="cliente">Título:</label>
+                    <label for="titulo">Título:</label>
                     <input type="text" name="titulo" id="titulo" placeholder="Digite o Título do Livro" required>
                 </div>  
 
                 <div class="form-group">
-                    <label for="cliente">Capa:</label>
-                    <input type="text" name="capa" id="capa" placeholder="Cole o endereço de Imagem" required>
+                    <label for="capa">Capa (URL):</label>
+                    <input type="url" name="capa" id="capa" placeholder="Cole o endereço da imagem" required>
                 </div>
 
 				<div class="form-group">
-                    <label for="cliente">Autor:</label>
+                    <label for="autor">Autor:</label>
                     <input type="text" name="autor" id="autor" placeholder="Digite o Autor do Livro" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="cliente">Lançamento:</label>
-                    <input type="text" name="lancamento" id="lancamento" placeholder="Digite a Data de Lançamento do Livro" required>
+                    <label for="lancamento">Data de Lançamento:</label>
+                    <input type="date" name="lancamento" id="lancamento" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="cliente">Gênero:</label>
-                    <input type="text" name="genero" id="genero" placeholder="Digite a Editora do Livro" required>
+                    <label for="genero">Gênero:</label>
+                    <input type="text" name="genero" id="genero" placeholder="Digite o Gênero do Livro" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="cliente">Editora:</label>
+                    <label for="editora">Editora:</label>
                     <input type="text" name="editora" id="editora" placeholder="Digite a Editora do Livro" required>
                 </div>
 
 				<div class="form-group">
-                    <label for="cliente">Páginas:</label>
-                    <input type="text" name="paginas" id="paginas" placeholder="Digite a Quantidade de Páginas do Livro" required>
+                    <label for="paginas">Páginas:</label>
+                    <input type="number" name="paginas" id="paginas" placeholder="Digite a Quantidade de Páginas" required>
                 </div>
-                    <button type="submit" class="btn-submit">Cadastrar Livro</button>
+                    <button type="submit" class="btn btn-submit">Cadastrar Livro</button>
                 </form>
                 
-                <div class="container-center">
-                    <a href="site_funcionario.php" class="link-voltar">Voltar</a>
+                <div class="nav-links">
+                    <a href="site_funcionario.php" class="btn btn-link">Voltar</a>
                 </div>
             </div>
         </div>

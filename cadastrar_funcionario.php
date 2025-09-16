@@ -10,54 +10,54 @@
         <div class="container">
             <h1 class="page-title">Cadastrar Novo Funcionário</h1>
             
-            <div class="divCadastro">
-                <h2>Dados do Cliente</h2>
+            <div class="form-container">
+                <h2 class="login-title">Dados do Funcionário</h2>
                 
-                <form method="post" action="cadastrarBanco_Funcionario.php" id="formCadastro" name="formCadastro">
+                <form method="post" action="cadastrarBanco_Funcionario.php">
                     <div class="form-group">
-                        <label for="cliente">Nome Completo:</label>
+                        <label for="funcionario">Nome Completo:</label>
                         <input type="text" name="funcionario" id="funcionario" placeholder="Digite o Nome" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Senha:</label>
+                        <label for="senha">Senha:</label>
                         <input type="password" name="senha" id="senha" placeholder="Digite a Senha" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Endereço:</label>
+                        <label for="endereco">Endereço:</label>
                         <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Cidade:</label>
-                        <input type="text" name="cidade" id="cidade" placeholder="Digite o cidade" required>
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" name="cidade" id="cidade" placeholder="Digite a cidade" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Estado:</label>
+                        <label for="estado">Estado:</label>
                         <input type="text" name="estado" id="estado" placeholder="Digite o estado" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Telefone:</label>
+                        <label for="telefone">Telefone:</label>
                         <input type="text" name="telefone" id="telefone" placeholder="Digite o telefone" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="cliente">Cargo:</label>
+                        <label for="cargo">Cargo:</label>
                         <input type="text" name="cargo" id="cargo" placeholder="Digite o cargo" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Data_Admissao:</label>
-                        <input type="text" name="data" id="data" placeholder="Digite quando ele foi contratado" required>
+                        <label for="data">Data de Admissão:</label>
+                        <input type="date" name="data" id="data" required>
                     </div>
-                    <button type="submit" class="btn-submit">Cadastrar Funcionário</button>
+                    <button type="submit" class="btn btn-submit">Cadastrar Funcionário</button>
                 </form>
                 
-                <div class="container-center">
-                    <a href="site_funcionario.php" class="link-voltar">Voltar</a>
+                <div class="nav-links">
+                    <a href="site_funcionario.php" class="btn btn-link">Voltar</a>
                 </div>
             </div>
         </div>

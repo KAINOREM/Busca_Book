@@ -10,45 +10,45 @@
         <div class="container">
             <h1 class="page-title">Cadastrar Novo Cliente</h1>
             
-            <div class="divCadastro">
-                <h2>Dados do Cliente</h2>
+            <div class="form-container">
+                <h2 class="login-title">Dados do Cliente</h2>
                 
-                <form method="post" action="cadastrarBanco_cliente.php" id="formCadastro" name="formCadastro">
+                <form method="post" action="cadastrarBanco_cliente.php">
                     <div class="form-group">
                         <label for="cliente">Nome Completo:</label>
                         <input type="text" name="cliente" id="cliente" placeholder="Digite seu Nome" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Senha:</label>
+                        <label for="senha">Senha:</label>
                         <input type="password" name="senha" id="senha" placeholder="Digite a Senha" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Endereço:</label>
+                        <label for="endereco">Endereço:</label>
                         <input type="text" name="endereco" id="endereco" placeholder="Digite o Endereço" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Cidade:</label>
-                        <input type="text" name="cidade" id="cidade" placeholder="Digite o cidade" required>
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" name="cidade" id="cidade" placeholder="Digite a cidade" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Estado:</label>
+                        <label for="estado">Estado:</label>
                         <input type="text" name="estado" id="estado" placeholder="Digite o estado" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="cliente">Telefone:</label>
+                        <label for="telefone">Telefone:</label>
                         <input type="text" name="telefone" id="telefone" placeholder="Digite o telefone" required>
                     </div>
                     
-                    <button type="submit" class="btn-submit">Cadastrar Cliente</button>
+                    <button type="submit" class="btn btn-submit">Cadastrar Cliente</button>
                 </form>
                 
-                <div class="container-center">
-                    <a href="index.php" class="link-voltar">Voltar</a>
+                <div class="nav-links">
+                    <a href="index.php" class="btn btn-link">Voltar</a>
                 </div>
             </div>
         </div>

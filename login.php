@@ -10,13 +10,13 @@
         <div class="container">
             <h1 class="page-title">Busca Book</h1>
             
-            <div class="divLogin">
-                <h2>Login</h2>
+            <div class="login-container">
+                <h2 class="login-title">Login</h2>
                 
-                <form method="post" action="verificaLogin.php" id="formlogin" name="formlogin">
+                <form method="post" action="verificaLogin.php">
                     <div class="form-group">
-                        <label for="usuario">Nome:</label>
-                        <input type="usuario" name="usuario" id="usuario" placeholder="Digite seu nome" required>
+                        <label for="usuario">Email:</label>
+                        <input type="text" name="usuario" id="usuario" placeholder="Digite seu email ou nome" required>
                     </div>
                     
                     <div class="form-group">
@@ -24,8 +24,12 @@
                         <input type="password" name="senha" id="senha" placeholder="Digite sua senha" required>
                     </div>
                     
-                    <button type="submit" class="btn-submit">Entrar</button>
+                    <button type="submit" class="btn btn-submit">Entrar</button>
                 </form>
+                
+                <div class="nav-links">
+                    <a href="index.php" class="btn btn-link">Voltar</a>
+                </div>
             </div>
         </div>
     </body>
