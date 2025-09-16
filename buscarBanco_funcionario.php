@@ -27,19 +27,21 @@
             $user = "root";
             $password = "";
             $database = "biblioteca";
-
-            $buscar = $conexao -> real_escape_string($_POST['buscar']);
             
-            echo '<form method="post" action="buscarBanco.php" id="formCadastro" name="formCadastro">
+            echo '<form method="post" action="buscarBanco_funcionario.php" id="formCadastro" name="formCadastro">
                     <div class="form-group">
-                        <input type="text" name="cliente" id="cliente" placeholder="Buscar" required>
+                        <input type="text" name="busca" id="busca" placeholder="Buscar" required>
                     </div>
 		          </form>
             ';
 
+
             $conexao = new mysqli($hostname,$user,$password,$database);
 
-            $sql="SELECT * FROM `biblioteca`.`livros`;";
+            $buscar = $conexao->real_escape_string($_POST['busca']);
+
+            $sql = "SELECT * FROM `biblioteca`.`livros` 
+                        WHERE `Titulo` LIKE '%$buscar%' OR `IdLivro` LIKE '%$buscar%'";
 
             $resultado = $conexao->query($sql);
 
@@ -79,20 +81,8 @@
             
             $conexao -> close();
 
-            if(strtoupper($verificaCargo['Cargo']) == 'GERENTE') {
             echo '<div class="links-principais">
-                  <a href="cadastrar_funcionario.php" class="botao-principal">Cadastrar Funcionário</a>
-                  <a href="cadastrar_livro.php" class="botao-principal">Cadastrar Livro</a>
-                  <a href="verifica_reservas.php" class="botao-principal">Verificar Reservas</a>
-                  </div>';     
-            } Else {
-            echo '<div class="links-principais">
-                  <a href="cadastrar_livro.php" class="botao-principal">Cadastrar Livro</a>
-                  <a href="verifica_reservas.php" class="botao-principal">Verificar Reservas</a>
-                  </div>';
-            }
-            echo '<div class="links-principais">
-                  <a href="index.php" class="botao-principal">Voltar</a>
+                  <a href="site_funcionario.php" class="botao-principal">Voltar</a>
                   </div>';
         ?>
     </body>

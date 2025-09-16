@@ -28,17 +28,18 @@
             $password = "";
             $database = "biblioteca";
             
-            echo '<form method="post" action="buscarBanco.php" id="formCadastro" name="formCadastro">
-                    <div class="form-group">
-                        <input type="text" name="cliente" id="cliente" placeholder="Buscar" required>
-                    </div>
-		          </form>
-            ';
 
             $conexao = new mysqli($hostname,$user,$password,$database);
 
-            $sql="SELECT * FROM `biblioteca`.`livros`;";
-
+            echo '<form method="post" action="buscarBanco_funcionario.php" id="formCadastro" name="formCadastro">
+                    <div class="form-group">
+                        <input type="text" name="busca" id="busca" placeholder="Buscar" required>
+                    </div>
+		          </form>
+            ';
+            
+            $sql = "SELECT * FROM `biblioteca`.`livros`";
+            
             $resultado = $conexao->query($sql);
 
             $cargo="SELECT `Cargo` FROM `biblioteca`.`funcionario` Where `IdFuncionario` = ".$_SESSION['Id'].";";

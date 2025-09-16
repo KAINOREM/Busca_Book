@@ -30,6 +30,13 @@
             
             $conexao = new mysqli($hostname,$user,$password,$database);
 
+            echo '<form method="post" action="buscarBanco_cliente.php" id="formCadastro" name="formCadastro">
+                    <div class="form-group">
+                        <input type="text" name="busca" id="busca" placeholder="Buscar" required>
+                    </div>
+		          </form>
+            ';
+
             $sql="SELECT * FROM `biblioteca`.`livros`;";
 
             $resultado = $conexao->query($sql);
